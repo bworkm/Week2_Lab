@@ -27,10 +27,25 @@ ul {
 li {
   font-weight: normal;
 }
-ul, li:last-child {
+ul, li:last-child, tr:last-child, td:first-child {
   font-weight: bold;
 }
 li:last-child {
   font-size: 18px;
   margin-top: 10px;
+}
+table {
+  background-color: #fff;
+  width: inherit;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
+td {
+  border-bottom: 1px dotted black;
+}
+th {
+  padding-bottom: 10px;
+}
+td:first-child {
+
 }
