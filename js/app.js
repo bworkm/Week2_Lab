@@ -3,8 +3,8 @@
 
 var alki = {
   // var cookiesSoldPerHour: [],
-  minCustPerHour: 7,
-  maxCustPerHour: 15,
+  minCustPerHour: 2,
+  maxCustPerHour: 16,
   avgCookiesPerCust: 4.6,
   avgCookiesPerHour: ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
   totalCookiesSold: 0,
@@ -29,8 +29,9 @@ var alki = {
   },
   renderData: function() {
     // Render the data from this location to the sales.html page.
+    this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('alki_List');
-
+    listItems.innerHTML = 'Average cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -42,10 +43,9 @@ var alki = {
 };
 //***************************************************************************
 var seatacAirport = {
-  // var cookiesSoldPerHour: [],
-  minCustPerHour: 7,
-  maxCustPerHour: 15,
-  avgCookiesPerCust: 4.6,
+  minCustPerHour: 3,
+  maxCustPerHour: 24,
+  avgCookiesPerCust: 1.2,
   avgCookiesPerHour: ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
   totalCookiesSold: 0,
   randCustPerHour: function() {
@@ -69,8 +69,9 @@ var seatacAirport = {
   },
   renderData: function() {
     // Render the data from this location to the sales.html page.
+    this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('seatacAirport_List');
-
+    listItems.innerHTML = 'Average cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -82,10 +83,9 @@ var seatacAirport = {
 };
 //***************************************************************************
 var seattleCenter = {
-  // var cookiesSoldPerHour: [],
-  minCustPerHour: 7,
-  maxCustPerHour: 15,
-  avgCookiesPerCust: 4.6,
+  minCustPerHour: 11,
+  maxCustPerHour: 38,
+  avgCookiesPerCust: 3.7,
   avgCookiesPerHour: ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
   totalCookiesSold: 0,
   randCustPerHour: function() {
@@ -109,8 +109,9 @@ var seattleCenter = {
   },
   renderData: function() {
     // Render the data from this location to the sales.html page.
+    this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('seattleCenter_List');
-
+    listItems.innerHTML = 'Average cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -122,10 +123,9 @@ var seattleCenter = {
 };
 //***************************************************************************
 var capitolHill = {
-  // var cookiesSoldPerHour: [],
-  minCustPerHour: 7,
-  maxCustPerHour: 15,
-  avgCookiesPerCust: 4.6,
+  minCustPerHour: 20,
+  maxCustPerHour: 38,
+  avgCookiesPerCust: 2.3,
   avgCookiesPerHour: ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
   totalCookiesSold: 0,
   randCustPerHour: function() {
@@ -149,8 +149,9 @@ var capitolHill = {
   },
   renderData: function() {
     // Render the data from this location to the sales.html page.
+    this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('capitolHill_List');
-
+    listItems.innerHTML = 'Average cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -163,9 +164,9 @@ var capitolHill = {
 //***************************************************************************
 var pikeAndFirst = {
   // var cookiesSoldPerHour: [],
-  minCustPerHour: 7,
-  maxCustPerHour: 15,
-  avgCookiesPerCust: 4.6,
+  minCustPerHour: 23,
+  maxCustPerHour: 65,
+  avgCookiesPerCust: 6.3,
   avgCookiesPerHour: ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
   totalCookiesSold: 0,
   randCustPerHour: function() {
@@ -189,8 +190,9 @@ var pikeAndFirst = {
   },
   renderData: function() {
     // Render the data from this location to the sales.html page.
+    this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('pikeAndFirst_List');
-
+    listItems.innerHTML = 'Average cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -201,3 +203,8 @@ var pikeAndFirst = {
   }
 };
 //***************************************************************************
+pikeAndFirst.renderData();
+seatacAirport.renderData();
+seattleCenter.renderData();
+capitolHill.renderData();
+alki.renderData();
