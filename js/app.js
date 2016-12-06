@@ -59,6 +59,7 @@ function renderTable() {
   // console.log(tableName, 'tableName');
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
+  var tdEl = document.createElement('td');
 
   function createHeaderRow() {
     trEl.appendChild(thEl);
@@ -67,13 +68,14 @@ function renderTable() {
       thEl.textContent = hours[i];
       trEl.appendChild(thEl);
     }
+    thEl = document.createElement('th');
+    trEl.appendChild(thEl);
+    thEl.textContent = 'Daily Location Total';
     tableName.appendChild(trEl);
     // console.log(trEl,'append header row');
   }
 //***********************************
   function createDataRows() {
-    var trEl = document.createElement('tr');
-    var tdEl = document.createElement('td');
 
     for (var j = 0; j < myCookieStands.length; j++) {
       trEl = document.createElement('tr');
@@ -91,11 +93,43 @@ function renderTable() {
         tdEl.textContent = myCookieStands[j].avgCookiesPerHour[i];
         trEl.appendChild(tdEl);
       }
+      tdEl = document.createElement('td');
+      tdEl.textContent = myCookieStands[j].totalCookiesSold;
+      trEl.appendChild(tdEl);
       tableName.appendChild(trEl);
     }
   }
+  //***********************************
+  function createTotalsRow() {
+    trEl = document.createElement('tr');
+    tdEl = document.createElement('td');
+    tdEl.textContent = 'Totals';
+    trEl.appendChild(tdEl);
+    var subTotal = 0;
+
+
+    for (var j = 0; j < hours.length; j++) {
+      for (var i = 0; i < myCookieStands.length; i++) {
+        subTotal += myCookieStands[i].avgCookiesPerHour[j];
+      }
+      tdEl = document.createElement('td');
+      tdEl.textContent = subTotal;
+      trEl.appendChild(tdEl);
+      subTotal = 0;
+    }
+    for (var k = 0; k < myCookieStands.length; k++) {
+      subTotal += myCookieStands[k].totalCookiesSold;
+    }
+    tdEl = document.createElement('td');
+    tdEl.textContent = subTotal;
+    trEl.appendChild(tdEl);
+    tableName.appendChild(trEl);
+//------------  This calculates the overall total of all stores
+//------------------
+  }
   createHeaderRow();
   createDataRows();
+  createTotalsRow();
 };
 //***********************************
 
