@@ -31,7 +31,7 @@ var alki = {
     // Render the data from this location to the sales.html page.
     this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('alki_List');
-    listItems.innerHTML = 'Average cookies sold per hour';
+    listItems.innerHTML = 'Cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -71,7 +71,7 @@ var seatacAirport = {
     // Render the data from this location to the sales.html page.
     this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('seatacAirport_List');
-    listItems.innerHTML = 'Average cookies sold per hour';
+    listItems.innerHTML = 'Cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -111,7 +111,7 @@ var seattleCenter = {
     // Render the data from this location to the sales.html page.
     this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('seattleCenter_List');
-    listItems.innerHTML = 'Average cookies sold per hour';
+    listItems.innerHTML = 'Cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -151,7 +151,7 @@ var capitolHill = {
     // Render the data from this location to the sales.html page.
     this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('capitolHill_List');
-    listItems.innerHTML = 'Average cookies sold per hour';
+    listItems.innerHTML = 'Cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');
@@ -192,7 +192,7 @@ var pikeAndFirst = {
     // Render the data from this location to the sales.html page.
     this.calcCookiesSoldPerHour();
     var listItems = document.getElementById('pikeAndFirst_List');
-    listItems.innerHTML = 'Average cookies sold per hour';
+    listItems.innerHTML = 'Cookies sold per hour';
     for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       console.log('AvgCookiesPerHour[' + i + '] : ' + this.avgCookiesPerHour[i]);
       var liEl = document.createElement('li');

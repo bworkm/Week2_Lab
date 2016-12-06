@@ -1,0 +1,32 @@
+#pageWrap {
+  /*align-items: center;*/
+  width: 960px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 220px;
+}
+
+div {
+  float: left;
+  margin: 10px;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ul {
+  list-style-type: circle;
+  list-style-position: inside;
+  padding :10px;
+  /*padding-bottom: 15px;*/
+  /*font-weight: bold;*/
+}
+
+li {
+  font-weight: normal;
+}
+ul, li:last-child {
+  font-weight: bold;
+}
