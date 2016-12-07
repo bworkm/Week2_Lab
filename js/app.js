@@ -11,7 +11,7 @@ var tableName = document.getElementById('cookieStandData');
 
 var myCookieStands = [];
 var hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-
+//Constructor for cookie stands
 function CookieStand(placeName, min, max, cookies) {
   this.locationName = placeName;
   this.elementID = placeName.toLowerCase().replace(/ /g,'_');
@@ -39,25 +39,27 @@ function CookieStand(placeName, min, max, cookies) {
 
   this.renderData = function() {
     this.calcCookiesSoldPerHour();
-    var listItems = document.getElementById(this.elementID);
-    var liEl = document.createElement('li');
-    listItems.innerHTML = 'Cookies sold per hour';
-    for (var i = 0; i < this.avgCookiesPerHour.length - 1; i++) {
-      liEl = document.createElement('li');
-      liEl.textContent = hours[i] + ': ' + this.avgCookiesPerHour[i] + ' cookies';
-      listItems.appendChild(liEl);
-    }
-    liEl = document.createElement('li');
-    liEl.textContent = this.totalCookiesSold + ' cookies';
-    listItems.appendChild(liEl);
 
+    // v This code is used for displaying a List layout v
+    // var listItems = document.getElementById(this.elementID);
+    // var liEl = document.createElement('li');
+    // listItems.innerHTML = 'Cookies sold per hour';
+    // for (var i = 0; i < this.avgCookiesPerHour.length - 1; i++) {
+    //   liEl = document.createElement('li');
+    //   liEl.textContent = hours[i] + ': ' + this.avgCookiesPerHour[i] + ' cookies';
+    //   listItems.appendChild(liEl);
+    // }
+    // liEl = document.createElement('li');
+    // liEl.textContent = this.totalCookiesSold + ' cookies';
+    // listItems.appendChild(liEl);
 //***********************************
+    // v This code is used for displaying a Table layout v
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
     tdEl.textContent = this.locationName;
     trEl.appendChild(tdEl);
 
-    for (i = 0; i < this.avgCookiesPerHour.length; i++) {
+    for (var i = 0; i < this.avgCookiesPerHour.length; i++) {
       tdEl = document.createElement('td');
       tdEl.textContent = this.avgCookiesPerHour[i];
       trEl.appendChild(tdEl);
