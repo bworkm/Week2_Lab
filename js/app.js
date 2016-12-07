@@ -7,7 +7,8 @@ var places = [
   ['Capitol Hill',20,38,2.3],
   ['Alki',2,16,4.6]
 ];
-var tableName = document.getElementById('cookieStandData');
+var cookieStandData = document.getElementById('cookieStandData');
+var cookieStandStaffingData = document.getElementById('cookieStandStaffingData');
 
 var myCookieStands = [];
 var hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
@@ -20,10 +21,13 @@ function CookieStand(placeName, min, max, cookies) {
   this.avgCookiesPerCust = cookies;
   this.avgCookiesPerHour = [];
   this.randCustPerHour = [];
+  this.staffOnDutyPerHour = [];
+  this.staffCustServedPerHour = 20;
   this.totalCookiesSold = 0;
   this.calcRandCustPerHour = function() {
     for (var i = 0; i < hours.length; i++) {
       this.randCustPerHour[i] = Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1)) + this.minCustPerHour;
+      this.staffOnDutyPerHour[i] = this.randCustPerHour[i] / this.staffCustServedPerHour;
     }
   };
 
@@ -37,23 +41,24 @@ function CookieStand(placeName, min, max, cookies) {
     }
   };
 
-  this.renderData = function() {
+  this.renderListData = function() {
     this.calcCookiesSoldPerHour();
-
     // v This code is used for displaying a List layout v
-    // var listItems = document.getElementById(this.elementID);
-    // var liEl = document.createElement('li');
-    // listItems.innerHTML = 'Cookies sold per hour';
-    // for (var i = 0; i < this.avgCookiesPerHour.length - 1; i++) {
-    //   liEl = document.createElement('li');
-    //   liEl.textContent = hours[i] + ': ' + this.avgCookiesPerHour[i] + ' cookies';
-    //   listItems.appendChild(liEl);
-    // }
-    // liEl = document.createElement('li');
-    // liEl.textContent = this.totalCookiesSold + ' cookies';
-    // listItems.appendChild(liEl);
-//***********************************
+    var listItems = document.getElementById(this.elementID);
+    var liEl = document.createElement('li');
+    listItems.innerHTML = 'Cookies sold per hour';
+    for (var j = 0; j < this.avgCookiesPerHour.length - 1; j++) {
+      liEl = document.createElement('li');
+      liEl.textContent = hours[j] + ': ' + this.avgCookiesPerHour[j] + ' cookies';
+      listItems.appendChild(liEl);
+    }
+    liEl = document.createElement('li');
+    liEl.textContent = this.totalCookiesSold + ' cookies';
+    listItems.appendChild(liEl);
+  };
     // v This code is used for displaying a Table layout v
+  this.renderTableData = function() {
+    this.calcCookiesSoldPerHour();
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
     tdEl.textContent = this.locationName;
@@ -67,21 +72,17 @@ function CookieStand(placeName, min, max, cookies) {
     tdEl = document.createElement('td');
     tdEl.textContent = this.totalCookiesSold;
     trEl.appendChild(tdEl);
-    tableName.appendChild(trEl);
+    cookieStandData.appendChild(trEl);
   };
 
-//***********************************
-
   myCookieStands.push(this);
-}
-
+} //end of constructor
 //***************************************************************************
-function renderTable() {
-  // console.log(tableName, 'tableName');
+function renderTable(tableName) {
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
   var tdEl = document.createElement('td');
-
+  //***********************************
   function createHeaderRow() {
     trEl.appendChild(thEl);
     for (var i = 0; i < hours.length; i++) {
@@ -93,9 +94,7 @@ function renderTable() {
     trEl.appendChild(thEl);
     thEl.textContent = 'Daily Location Total';
     tableName.appendChild(trEl);
-    // console.log(trEl,'append header row');
   }
-
   //***********************************
   function createTotalsRow() {
     trEl = document.createElement('tr');
@@ -104,33 +103,36 @@ function renderTable() {
     trEl.appendChild(tdEl);
     var subTotal = 0;
 
-
     for (var j = 0; j < hours.length; j++) {
       for (var i = 0; i < myCookieStands.length; i++) {
         subTotal += myCookieStands[i].avgCookiesPerHour[j];
-      }
+      } //end for i
       tdEl = document.createElement('td');
       tdEl.textContent = subTotal;
       trEl.appendChild(tdEl);
       subTotal = 0;
-    }
+    } //end for j
     for (var k = 0; k < myCookieStands.length; k++) {
       subTotal += myCookieStands[k].totalCookiesSold;
-    }
+    } //end for k
     tdEl = document.createElement('td');
     tdEl.textContent = subTotal;
     trEl.appendChild(tdEl);
     tableName.appendChild(trEl);
-//------------  This calculates the overall total of all stores
-//------------------
-  }
-  createHeaderRow();
+  } //end createTotalsRow
+  //***********************************
+  // function calls within renderTable()
+  createHeaderRow(tableName);
+  // **** This code runs with each call of renderTable(). It doesn't accept the table name param so it appends data to the first table.
   for (var i = 0; i < places.length; i++) {
     new CookieStand(places[i][0], places[i][1], places[i][2], places[i][3], places[i][4]);
-    myCookieStands[i].renderData();
+    myCookieStands[i].renderTableData();  // Renders data in Table format.
+    // myCookieStands[i].renderListData();  // Renders data in List format. Uncomment List items in html.
+  // ****
   }
-  createTotalsRow();
+  createTotalsRow(tableName);
 };
 //***********************************
-
-renderTable();
+// Main function calls
+renderTable(cookieStandData);
+renderTable(cookieStandStaffingData);
