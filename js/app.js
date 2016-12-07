@@ -57,8 +57,8 @@ function CookieStand(placeName, min, max, cookies) {
     listItems.appendChild(liEl);
   };
     // v This code is used for displaying a Table layout v
-  this.renderTableData = function() {
-    this.calcCookiesSoldPerHour();
+  this.renderTableData = function(thisIsMyTable) {
+    this.calcCookiesSoldPerHour();  // This runs with each call of .renderTableData.  Sad panda.
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
     tdEl.textContent = this.locationName;
@@ -72,67 +72,69 @@ function CookieStand(placeName, min, max, cookies) {
     tdEl = document.createElement('td');
     tdEl.textContent = this.totalCookiesSold;
     trEl.appendChild(tdEl);
-    cookieStandData.appendChild(trEl);
+    thisIsMyTable.appendChild(trEl);
   };
 
   myCookieStands.push(this);
 } //end of constructor
 //***************************************************************************
-function renderTable(tableName) {
-  var trEl = document.createElement('tr');
+function createHeaderRow(tableName) {
   var thEl = document.createElement('th');
-  var tdEl = document.createElement('td');
-  //***********************************
-  function createHeaderRow() {
-    trEl.appendChild(thEl);
-    for (var i = 0; i < hours.length; i++) {
-      thEl = document.createElement('th');
-      thEl.textContent = hours[i];
-      trEl.appendChild(thEl);
-    }
+  var trEl = document.createElement('tr');
+  trEl.appendChild(thEl);
+  for (var i = 0; i < hours.length; i++) {
     thEl = document.createElement('th');
+    thEl.textContent = hours[i];
     trEl.appendChild(thEl);
-    thEl.textContent = 'Daily Location Total';
-    tableName.appendChild(trEl);
   }
+  thEl = document.createElement('th');
+  trEl.appendChild(thEl);
+  thEl.textContent = 'Daily Location Total';
+  tableName.appendChild(trEl);
+}
   //***********************************
-  function createTotalsRow() {
-    trEl = document.createElement('tr');
-    tdEl = document.createElement('td');
-    tdEl.textContent = 'Totals';
-    trEl.appendChild(tdEl);
-    var subTotal = 0;
+function createTotalsRow(tableName) {
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  tdEl.textContent = 'Totals';
+  trEl.appendChild(tdEl);
+  var subTotal = 0;
 
-    for (var j = 0; j < hours.length; j++) {
-      for (var i = 0; i < myCookieStands.length; i++) {
-        subTotal += myCookieStands[i].avgCookiesPerHour[j];
-      } //end for i
-      tdEl = document.createElement('td');
-      tdEl.textContent = subTotal;
-      trEl.appendChild(tdEl);
-      subTotal = 0;
-    } //end for j
-    for (var k = 0; k < myCookieStands.length; k++) {
-      subTotal += myCookieStands[k].totalCookiesSold;
-    } //end for k
+  for (var j = 0; j < hours.length; j++) {
+    for (var i = 0; i < myCookieStands.length; i++) {
+      subTotal += myCookieStands[i].avgCookiesPerHour[j];
+    } //end for i
     tdEl = document.createElement('td');
     tdEl.textContent = subTotal;
     trEl.appendChild(tdEl);
-    tableName.appendChild(trEl);
-  } //end createTotalsRow
+    subTotal = 0;
+  } //end for j
+  for (var k = 0; k < myCookieStands.length; k++) {
+    subTotal += myCookieStands[k].totalCookiesSold;
+  } //end for k
+  tdEl = document.createElement('td');
+  tdEl.textContent = subTotal;
+  trEl.appendChild(tdEl);
+  tableName.appendChild(trEl);
+} //end createTotalsRow
   //***********************************
-  // function calls within renderTable()
-  createHeaderRow(tableName);
-  // **** This code runs with each call of renderTable(). It doesn't accept the table name param so it appends data to the first table.
+function renderStoreData(thisIsMyTable) {
   for (var i = 0; i < places.length; i++) {
-    new CookieStand(places[i][0], places[i][1], places[i][2], places[i][3], places[i][4]);
-    myCookieStands[i].renderTableData();  // Renders data in Table format.
+    myCookieStands[i].renderTableData(thisIsMyTable);  // Renders data in Table format.
     // myCookieStands[i].renderListData();  // Renders data in List format. Uncomment List items in html.
-  // ****
   }
-  createTotalsRow(tableName);
 };
 //***********************************
 // Main function calls
-renderTable(cookieStandData);
-renderTable(cookieStandStaffingData);
+for (var i = 0; i < places.length; i++) {
+  new CookieStand(places[i][0], places[i][1], places[i][2], places[i][3], places[i][4]);
+}
+createHeaderRow(cookieStandData);
+renderStoreData(cookieStandData);
+createTotalsRow(cookieStandData);
+
+// createHeaderRow(cookieStandStaffingData);
+// renderStoreData(cookieStandStaffingData);
+// createTotalsRow(cookieStandStaffingData);
+
+// createTable(cookieStandStaffingData);
