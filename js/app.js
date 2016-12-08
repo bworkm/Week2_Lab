@@ -1,9 +1,16 @@
 'use strict';
 
+// var places = [
+//   ['First and Pike',23,65,6.3],
+//   ['Seatac Airport',3,24,1.2],
+//   ['Seattle Center',11,38,3.7],
+//   ['Capitol Hill',20,38,2.3],
+//   ['Alki',2,16,4.6]
+// ];
 var places = [
-  ['First and Pike',23,65,6.3],
-  ['Seatac Airport',3,24,1.2],
-  ['Seattle Center',11,38,3.7],
+  ['First and Pike',2,6,6],
+  ['Seatac Airport',3,4,2],
+  ['Seattle Center',10,38,3.7],
   ['Capitol Hill',20,38,2.3],
   ['Alki',2,16,4.6]
 ];
@@ -43,7 +50,6 @@ function CookieStand(placeName, min, max, cookies) {
       this.avgCookiesPerCust = Math.ceil(this.avgCookiesPerCust);
       this.avgCookiesPerHour[i] = (this.randCustPerHour[i] * this.avgCookiesPerCust);
       this.totalCookiesSold += this.avgCookiesPerHour[i];
-      this.avgCookiesPerHour[i] = this.avgCookiesPerHour[i];
     }
   };
 
@@ -84,7 +90,6 @@ function CookieStand(placeName, min, max, cookies) {
     trEl.appendChild(tdEl);
     thisIsMyTable.appendChild(trEl);
   };
-
   myCookieStands.push(this);
 } //end of constructor
 //***************************************************************************
@@ -133,7 +138,13 @@ function renderStoreData(thisIsMyTable) {
     myCookieStands[i].renderTableData(thisIsMyTable);  // Renders data in Table format.
     // myCookieStands[i].renderListData();  // Renders data in List format. Uncomment List items in html.
   }
+  console.log(myCookieStands[4].randCustPerHour, 'randCustPerHour');
+  console.log(myCookieStands[4].avgCookiesPerCust, 'avgCookiesPerCust');
+  console.log(myCookieStands[4].avgCookiesPerHour, 'avgCookiesPerHour');
 };
+function clearTable(table) {
+  table.innerHTML = '';
+}
 function handleSubmit(event) {
   event.preventDefault();
   var placeName = event.target.placeName.value;
@@ -151,14 +162,14 @@ function handleSubmit(event) {
   }
 
   if (standExists() !== -1) {
-    myCookieStands[tempPosition].minCustPerHour = minCust;
-    myCookieStands[tempPosition].maxCustPerHour = maxCust;
-    myCookieStands[tempPosition].avgCookiesPerCust = avgCookies;
+    myCookieStands[tempPosition].minCustPerHour = parseInt(minCust);
+    myCookieStands[tempPosition].maxCustPerHour = parseInt(maxCust);
+    myCookieStands[tempPosition].avgCookiesPerCust = parseInt(avgCookies);
     myCookieStands[tempPosition].calcCookiesSoldPerHour();
   } else {
     new CookieStand(placeName, minCust, maxCust, avgCookies);
   }
-  cookieStandData.innerHTML = '';
+  clearTable(cookieStandData);
   createHeaderRow(cookieStandData);
   renderStoreData(cookieStandData);
   createTotalsRow(cookieStandData);
