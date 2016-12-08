@@ -40,12 +40,13 @@ form {
 }
 table {
   background-color: #fff;
+  width: inherit;
   border: 1px solid black;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-table {
-  width: inherit;
+tr:last-child > td {
+  border-bottom: 0px;
 }
 td {
   border-bottom: 1px dotted black;
