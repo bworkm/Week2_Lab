@@ -6,10 +6,26 @@ body {
   margin: 0 auto;
   background-color: #afafaf;
 }
+#header img {
+  width: 300px;
+  height:auto;
+}
+#header, #footer {
+  width: inherit;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px dotted black;
+}
+#footer {
+}
 .container {
   width: 220px;
   background-color: #fff;
 }
+#pageWrap > ul > li {
+  position: absolute;
+}
+
 div {
   display: inline-block;
   margin: 10px auto;
@@ -27,12 +43,20 @@ ul {
 li {
   font-weight: normal;
 }
-ul, li:last-child, tr:last-child, td:first-child {
+ul, #pageWrap > li:last-child, tr:last-child, td:first-child {
   font-weight: bold;
 }
-li:last-child {
+#pageWrap > li:last-child {
   font-size: 18px;
   margin-top: 10px;
+}
+#header > ul {
+  list-style-type: none;
+  display: inline-flex;
+  float: right;
+}
+#header > li {
+  /*float: left;*/
 }
 form {
   width: 800px;
@@ -40,12 +64,13 @@ form {
 }
 table {
   background-color: #fff;
+  width: inherit;
   border: 1px solid black;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-table {
-  width: inherit;
+tr:last-child > td {
+  border-bottom: 0px;
 }
 td {
   border-bottom: 1px dotted black;
@@ -81,4 +106,12 @@ legend {
   border-radius: 6px;
   background-color: salmon;
   padding: 2px;
+}
+.floatL {
+  float: left;
+  border: 0px;
+}
+.floatR {
+  float: right;
+  border: 0px;
 }

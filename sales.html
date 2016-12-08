@@ -13,13 +13,13 @@
           <fieldset class="">
             <legend>Add/Update Data</legend>
             <label for="placeName">Name</label>
-            <input name="placeName" class="nameField" type="text">
+            <input name="placeName" class="nameField" type="text" required>
             <label for="min">Min</label>
-            <input name="min" class="numField" type="text">
+            <input name="min" class="numField" type="number" step=".1" required>
             <label for="max">Max</label>
-            <input name="max" class="numField" type="text">
+            <input name="max" class="numField" type="number" step=".1" required>
             <label for="avg">Avg</label>
-            <input name="avg" class="numField" type="text">
+            <input name="avg" class="numField" type="number" step=".1" required>
             <button type="submit">Submit</button>
           </fieldset>
         </form>
@@ -59,7 +59,12 @@
       <!-- <h1>Staffing Data</h1>
       <h3>1 Employee = 20 Customers/hr</h3>
       <table id="cookieStandStaffingData"></table> -->
+      <div id="footer">
+        <div id="copyright" class="floatL">Copyright 2016</div>
+        <div id="signature" class="floatR">CodeFellows 201d17</div>
+      </div>
     </div>
+
   <script src="js/app.js"></script>
   </body>
 </html>
