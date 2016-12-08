@@ -34,12 +34,18 @@ li:last-child {
   font-size: 18px;
   margin-top: 10px;
 }
+form {
+  width: 800px;
+  margin: 0 auto;
+}
 table {
   background-color: #fff;
-  width: inherit;
   border: 1px solid black;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+table {
+  width: inherit;
 }
 td {
   border-bottom: 1px dotted black;
@@ -47,6 +53,32 @@ td {
 th {
   padding-bottom: 10px;
 }
-td:first-child {
-
+.clear {
+  margin: 0 auto;
+  border: 0px;
+}
+.nameField{
+  /*float: left;*/
+  width: 30%;
+}
+.numField{
+  width: 10%;
+}
+button {
+  float: right;
+  width: 60px;
+  height: 21px;
+  border-radius: 6px;
+}
+fieldset {
+  padding: 10px;
+  background-color: #fff;
+}
+label {
+  margin-left: 10px;
+}
+legend {
+  border-radius: 6px;
+  background-color: salmon;
+  padding: 2px;
 }

@@ -1,17 +1,29 @@
 'use strict';
-// Calculate daily sales projections
+
+// var places = [
+//   ['First and Pike',23,65,6.3],
+//   ['Seatac Airport',3,24,1.2],
+//   ['Seattle Center',11,38,3.7],
+//   ['Capitol Hill',20,38,2.3],
+//   ['Alki',2,16,4.6]
+// ];
 var places = [
-  ['First and Pike',23,65,6.3],
-  ['Seatac Airport',3,24,1.2],
-  ['Seattle Center',11,38,3.7],
+  ['First and Pike',2,6,6],
+  ['Seatac Airport',3,4,2],
+  ['Seattle Center',10,38,3.7],
   ['Capitol Hill',20,38,2.3],
   ['Alki',2,16,4.6]
 ];
 var cookieStandData = document.getElementById('cookieStandData');
-var cookieStandStaffingData = document.getElementById('cookieStandStaffingData');
+var cookieStandStaffingData = document.getElementById('cookieStandStaffingData');  //eslint-disable-line
 
 var myCookieStands = [];
 var hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
+
+var formEl = document.getElementById('storeDataForm');
+
+// console.log(formEl);
+
 //Constructor for cookie stands
 function CookieStand(placeName, min, max, cookies) {
   this.locationName = placeName;
@@ -33,16 +45,18 @@ function CookieStand(placeName, min, max, cookies) {
 
   this.calcCookiesSoldPerHour = function() {
     this.calcRandCustPerHour();
+    this.totalCookiesSold = 0;
     for (var i = 0; i < hours.length; i++) {
       this.avgCookiesPerCust = Math.ceil(this.avgCookiesPerCust);
       this.avgCookiesPerHour[i] = (this.randCustPerHour[i] * this.avgCookiesPerCust);
       this.totalCookiesSold += this.avgCookiesPerHour[i];
-      this.avgCookiesPerHour[i] = this.avgCookiesPerHour[i];
     }
   };
 
   this.renderListData = function() {
-    this.calcCookiesSoldPerHour();
+    if (this.avgCookiesPerHour.length < 1) {
+      this.calcCookiesSoldPerHour();
+    }
     // v This code is used for displaying a List layout v
     var listItems = document.getElementById(this.elementID);
     var liEl = document.createElement('li');
@@ -58,7 +72,9 @@ function CookieStand(placeName, min, max, cookies) {
   };
     // v This code is used for displaying a Table layout v
   this.renderTableData = function(thisIsMyTable) {
-    this.calcCookiesSoldPerHour();  // This runs with each call of .renderTableData.  Sad panda.
+    if (this.avgCookiesPerHour.length < 1) {
+      this.calcCookiesSoldPerHour();
+    }
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
     tdEl.textContent = this.locationName;
@@ -74,7 +90,6 @@ function CookieStand(placeName, min, max, cookies) {
     trEl.appendChild(tdEl);
     thisIsMyTable.appendChild(trEl);
   };
-
   myCookieStands.push(this);
 } //end of constructor
 //***************************************************************************
@@ -119,13 +134,51 @@ function createTotalsRow(tableName) {
 } //end createTotalsRow
   //***********************************
 function renderStoreData(thisIsMyTable) {
-  for (var i = 0; i < places.length; i++) {
+  for (var i = 0; i < myCookieStands.length; i++) {
     myCookieStands[i].renderTableData(thisIsMyTable);  // Renders data in Table format.
     // myCookieStands[i].renderListData();  // Renders data in List format. Uncomment List items in html.
   }
+  console.log(myCookieStands[4].randCustPerHour, 'randCustPerHour');
+  console.log(myCookieStands[4].avgCookiesPerCust, 'avgCookiesPerCust');
+  console.log(myCookieStands[4].avgCookiesPerHour, 'avgCookiesPerHour');
 };
+function clearTable(table) {
+  table.innerHTML = '';
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  var placeName = event.target.placeName.value;
+  var minCust = event.target.min.value;
+  var maxCust = event.target.max.value;
+  var avgCookies = event.target.avg.value;
+  var tempPosition = -1;
+  function standExists() {
+    for (var i = 0; i < myCookieStands.length; i++) {
+      if (myCookieStands[i].locationName.toLowerCase() === placeName.toLowerCase()) {
+        tempPosition = i;
+      }
+    }
+    return tempPosition;
+  }
+
+  if (standExists() !== -1) {
+    myCookieStands[tempPosition].minCustPerHour = parseInt(minCust);
+    myCookieStands[tempPosition].maxCustPerHour = parseInt(maxCust);
+    myCookieStands[tempPosition].avgCookiesPerCust = parseInt(avgCookies);
+    myCookieStands[tempPosition].calcCookiesSoldPerHour();
+  } else {
+    new CookieStand(placeName, minCust, maxCust, avgCookies);
+  }
+  clearTable(cookieStandData);
+  createHeaderRow(cookieStandData);
+  renderStoreData(cookieStandData);
+  createTotalsRow(cookieStandData);
+}
 //***********************************
+formEl.addEventListener('submit', handleSubmit);
+
 // Main function calls
+
 for (var i = 0; i < places.length; i++) {
   new CookieStand(places[i][0], places[i][1], places[i][2], places[i][3], places[i][4]);
 }
@@ -133,6 +186,7 @@ createHeaderRow(cookieStandData);
 renderStoreData(cookieStandData);
 createTotalsRow(cookieStandData);
 
+// cookieStandData.innerHTML = ' ';
 // createHeaderRow(cookieStandStaffingData);
 // renderStoreData(cookieStandStaffingData);
 // createTotalsRow(cookieStandStaffingData);
