@@ -34,7 +34,7 @@ li:last-child {
   font-size: 18px;
   margin-top: 10px;
 }
-table {
+table, form {
   background-color: #fff;
   width: inherit;
   border: 1px solid black;
@@ -49,4 +49,8 @@ th {
 }
 td:first-child {
 
+}
+.clear {
+  margin: 0 auto;
+  border: 0px;
 }
