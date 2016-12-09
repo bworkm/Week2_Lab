@@ -95,7 +95,7 @@ li {
 .smallb h3 {
   float: left;
 }
-h3 {
+.smalla h3, .smallb h3 {
   text-align: left;
   width: 460px;
   height: inherit;
@@ -165,6 +165,7 @@ button {
 fieldset {
   padding: 10px;
   background-color: #fff;
+  margin-top: 10px;
 }
 label {
   margin-left: 10px;
