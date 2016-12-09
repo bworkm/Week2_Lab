@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<!--
-A custom Google font for highlights
-A specified standard san-serif web font for data (such as Arial, Verdana, or Helvetica)
-A specified standard serif web font for text (such as Georgia, Times, etc.)
-Specified different font colors for all three font usages
-A background color for the default page background (make sure font colors have good contrast and are readable on this background)
-A different background color for elements such boxes and tables (so make sure the font colors contrast against this well, too!)
-Anything else you'd like to add related to style. But remember: simplicity, clarity, and consistency are good things in design.
-Be thoughtful about layout and overall organization of the page.
-Include all of the typical stuff that you'll find on the home page of a business: locations, hours, contact information, some text about how awesome the business is, etc. Be creative, and again, think about what is meaningful to a typical end user. -->
 
 <html>
   <head>
@@ -19,8 +9,10 @@ Include all of the typical stuff that you'll find on the home page of a business
   <body>
     <div id="pageWrap">
       <div id="header">
-        <img src="img/salmon.png"></img>
-        <h1>Pat's Salmon Cookies</h1>
+        <div class="bgImgContainer">
+          <img src="img/salmon.png"></img>
+        </div>
+        <h1 class="clear">Pat's Salmon Cookies</h1>
         <ul class="">
           <li>Home</li>
           <li>Locations</li>
@@ -28,14 +20,18 @@ Include all of the typical stuff that you'll find on the home page of a business
           <li>Contact Us</li>
         </ul>
       </div>
-      <ul>
-        <li class="main">
-        </li>
-        <li class="pos1">
-        </li>
-        <li class="pos2">
-        </li>
-      </ul>
+      <div class="content">
+        <ul>
+          <li class="main">
+          </li>
+          <li class="pos1">
+          </li>
+          <li class="pos2">
+          </li>
+        </ul>
+      </div>
+      <div class="aside">
+      </div>
       <div id="footer">
         <div id="copyright" class="floatL">Copyright 2016</div>
         <div id="signature" class="floatR">CodeFellows 201d17</div>
@@ -43,3 +39,13 @@ Include all of the typical stuff that you'll find on the home page of a business
     </div>
   </body>
 </html>
+<!--
+A custom Google font for highlights
+A specified standard san-serif web font for data (such as Arial, Verdana, or Helvetica)
+A specified standard serif web font for text (such as Georgia, Times, etc.)
+Specified different font colors for all three font usages
+A background color for the default page background (make sure font colors have good contrast and are readable on this background)
+A different background color for elements such boxes and tables (so make sure the font colors contrast against this well, too!)
+Anything else you'd like to add related to style. But remember: simplicity, clarity, and consistency are good things in design.
+Be thoughtful about layout and overall organization of the page.
+Include all of the typical stuff that you'll find on the home page of a business: locations, hours, contact information, some text about how awesome the business is, etc. Be creative, and again, think about what is meaningful to a typical end user. -->

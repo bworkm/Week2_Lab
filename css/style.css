@@ -1,22 +1,42 @@
+@import ;
+html {
+  position: relative;
+}
 body {
   text-align: center;
+  min-height: 800px;
 }
 #pageWrap {
   width: 960px;
+  min-height: inherit;
   margin: 0 auto;
   background-color: #afafaf;
 }
-#header img {
-  width: 300px;
-  height:auto;
+.bgImgContainer {
+  overflow: hidden;
+  border: 0;
+}
+.bgImgContainer img {
+  position: absolute;
+  left: 250px;
+  top: 0;
+  width: 50%;
+  opacity: .2;
 }
 #header, #footer {
   width: inherit;
   margin: 0 auto;
   padding: 0;
-  border: 1px dotted black;
+  border: 0;
+}
+#header {
+  background: url("img/salmon.png") no-repeat center center;
+  border-bottom: 1px solid black;
 }
 #footer {
+  position: absolute;
+  bottom: 10px;
+  left: 47px;
 }
 .container {
   width: 220px;
@@ -24,8 +44,15 @@ body {
 }
 #pageWrap > ul > li {
   position: absolute;
+  width: 300px;
 }
-
+.aside {
+  width: 300px;
+  min-height: inherit;
+}
+.content {
+  min-height: inherit;
+}
 div {
   display: inline-block;
   margin: 10px auto;
@@ -53,10 +80,11 @@ ul, #pageWrap > li:last-child, tr:last-child, td:first-child {
 #header > ul {
   list-style-type: none;
   display: inline-flex;
-  float: right;
+  margin-bottom: 0;
 }
-#header > li {
-  /*float: left;*/
+#header > ul > li {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 form {
   width: 800px;
@@ -103,8 +131,10 @@ label {
   margin-left: 10px;
 }
 legend {
-  border-radius: 6px;
-  background-color: salmon;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 12px;
+  background-color: #fff;
   padding: 2px;
 }
 .floatL {
