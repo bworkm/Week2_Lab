@@ -1,22 +1,36 @@
+@import ;
+html {
+  position: relative;
+}
 body {
   text-align: center;
+  min-height: 800px;
 }
 #pageWrap {
   width: 960px;
+  min-height: inherit;
   margin: 0 auto;
   background-color: #afafaf;
-}
-#header img {
-  width: 300px;
-  height:auto;
 }
 #header, #footer {
   width: inherit;
   margin: 0 auto;
   padding: 0;
-  border: 1px dotted black;
+  border: 0;
+}
+#header {
+  /*background: url("img/salmon.png") no-repeat center center;*/
+  border-bottom: 1px solid black;
+}
+.headImg {
+  float: left;
+  width: 250px;
 }
 #footer {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  left: 47px;
 }
 .container {
   width: 220px;
@@ -24,8 +38,35 @@ body {
 }
 #pageWrap > ul > li {
   position: absolute;
+  width: 300px;
 }
-
+.aside {
+  width: 250px;
+  min-height: inherit;
+  margin-left: 15px;
+  padding: 0;
+}
+.asideImg {
+  width: inherit;
+}
+.asideText {
+  margin-bottom: 20px;
+  border: 0;
+}
+.main {
+  height: 200px;
+  overflow: hidden;
+  width: 650px;
+  float: left;
+}
+.desc {
+  text-align: left;
+}
+.content {
+  min-height: 578px;
+  float: left;
+  width: 650px;
+}
 div {
   display: inline-block;
   margin: 10px auto;
@@ -43,6 +84,27 @@ ul {
 li {
   font-weight: normal;
 }
+.smalla, .smallb {
+  list-style-type: none;
+  margin-bottom: 20px;
+  height: 100px;
+}
+.smalla h3, .smallb img {
+  float: right;
+}
+.smallb h3 {
+  float: left;
+}
+h3 {
+  text-align: left;
+  width: 460px;
+  height: inherit;
+  margin: 0 auto;
+}
+li > img {
+  width: 150px;
+  height: inherit;
+}
 ul, #pageWrap > li:last-child, tr:last-child, td:first-child {
   font-weight: bold;
 }
@@ -53,10 +115,15 @@ ul, #pageWrap > li:last-child, tr:last-child, td:first-child {
 #header > ul {
   list-style-type: none;
   display: inline-flex;
-  float: right;
+  margin-bottom: 0;
+  position: absolute;
 }
-#header > li {
-  /*float: left;*/
+#header > ul > li {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#header h1 {
+  /*test*/
 }
 form {
   width: 800px;
@@ -103,8 +170,10 @@ label {
   margin-left: 10px;
 }
 legend {
-  border-radius: 6px;
-  background-color: salmon;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 12px;
+  background-color: #fff;
   padding: 2px;
 }
 .floatL {
