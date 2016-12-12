@@ -7,23 +7,30 @@
   </head>
   <body>
     <div id="pageWrap">
-      <h1>Pat's Salmon Cookies</h1>
-      <!-- <div id="formDiv"> -->
-        <form id="storeDataForm">
-          <fieldset class="">
-            <legend>Add/Update Data</legend>
-            <label for="placeName">Name</label>
-            <input name="placeName" class="nameField" type="text" required>
-            <label for="min">Min</label>
-            <input name="min" class="numField" type="number" step=".1" required>
-            <label for="max">Max</label>
-            <input name="max" class="numField" type="number" step=".1" required>
-            <label for="avg">Avg</label>
-            <input name="avg" class="numField" type="number" step=".1" required>
-            <button type="submit">Submit</button>
-          </fieldset>
-        </form>
-      <!-- </div> -->
+      <div id="header">
+        <img src="img/salmon.png" class="headImg"></img>
+        <h1 class="clear">Pat's Salmon Cookies</h1>
+        <ul>
+          <li>Home</li>
+          <li>Locations</li>
+          <li>Merchandise</li>
+          <li>Contact Us</li>
+        </ul>
+      </div>
+      <form id="storeDataForm">
+        <fieldset class="">
+          <legend>Add/Update Data</legend>
+          <label for="placeName">Name</label>
+          <input name="placeName" class="nameField" type="text" required>
+          <label for="min">Min</label>
+          <input name="min" class="numField" type="number" step=".1" required>
+          <label for="max">Max</label>
+          <input name="max" class="numField" type="number" step=".1" required>
+          <label for="avg">Avg</label>
+          <input name="avg" class="numField" type="number" step=".1" required>
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
       <h3>Cookies needed per location</h3>
       <!-- <div class="container">
         <h1 id="first_and_pike_title">1st and Pike</h1>
